@@ -13,5 +13,9 @@
   "sample-page": "Sample Page",
   "send-message": "Send Message",
   "under-construction": "Under Construction",
-  "view-messages": "View Messages"
+  "view-messages": "View Messages",
+  "media": "Media & Account",
+  "movies": "Movies",
+  "tv-shows": "TV Shows",
+  "change-password": "Change Password"
 }

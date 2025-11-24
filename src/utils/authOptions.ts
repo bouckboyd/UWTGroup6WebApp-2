@@ -12,10 +12,11 @@ function getRandomInt(min: number, max: number) {
 }
 
 function getRandomPhoneNumber() {
-  const areaCode = getRandomInt(100, 999);
-  const centralOfficeCode = getRandomInt(100, 999);
-  const lineNumber = getRandomInt(1000, 9999);
-  return `${areaCode}-${centralOfficeCode}-${lineNumber}`;
+  // Generate a 10-digit phone number (API requires at least 10 digits)
+  const areaCode = getRandomInt(200, 999); // 3 digits
+  const centralOfficeCode = getRandomInt(200, 999); // 3 digits
+  const lineNumber = getRandomInt(1000, 9999); // 4 digits
+  return `${areaCode}${centralOfficeCode}${lineNumber}`; // Total: 10 digits
 }
 
 export const authOptions: NextAuthOptions = {
@@ -56,23 +57,23 @@ export const authOptions: NextAuthOptions = {
         firstname: { name: 'firstname', label: 'First Name', type: 'text', placeholder: 'Enter First Name' },
         lastname: { name: 'lastname', label: 'Last Name', type: 'text', placeholder: 'Enter Last Name' },
         email: { name: 'email', label: 'Email', type: 'email', placeholder: 'Enter Email' },
-        company: { name: 'company', label: 'Company', type: 'text', placeholder: 'Enter Company' },
         password: { name: 'password', label: 'Password', type: 'password', placeholder: 'Enter Password' }
       },
       async authorize(credentials) {
         try {
+          // Generate a valid username from email (only letters, numbers, underscores, hyphens)
+          const username = credentials?.email!.split('@')[0].replace(/[^a-zA-Z0-9_-]/g, '_');
+
           const response = await authApi.register({
             firstname: credentials?.firstname!,
             lastname: credentials?.lastname!,
             password: credentials?.password!,
             email: credentials?.email!,
-            username: credentials?.email!,
-            phone: getRandomPhoneNumber() // TODO request phone number from user
+            username: username,
+            phone: getRandomPhoneNumber() // Generates 10-digit phone number
           });
           if (response) {
-            // TODO form your user object based on the Credentials API you're using.
-            // Check their API docs.
-            // console.dir(response.data);
+            // Form user object based on Group 1's Auth API response structure
             const data = response.data.data;
             data.user['accessToken'] = data.accessToken;
             return data.user;
