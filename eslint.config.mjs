@@ -31,8 +31,8 @@ export default [
     ]
   },
 
-  // Base configs from Next.js
-  ...compat.extends('next/core-web-vitals', 'prettier'),
+  // Base configs from Next.js - explicitly include Next.js plugin
+  ...compat.extends('next/core-web-vitals', 'next', 'prettier'),
 
   // Global configuration for all files
   {
