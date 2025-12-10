@@ -15,81 +15,81 @@ import { mediaApi } from 'services/mediaApi';
 import { Movie } from 'types/media';
 
 export default function MoviesPage() {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [movies, setMovies] = useState<Movie[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        const fetchMovies = async () => {
-            setLoading(true);
-            try {
-                const response = await mediaApi.getMovies(searchTerm);
-                setMovies(response.data);
-                setError(null);
-            } catch (err: any) {
-                console.error(err);
-                setError('Failed to load movies. Please try again later.');
-            } finally {
-                setLoading(false);
-            }
-        };
+  useEffect(() => {
+    const fetchMovies = async () => {
+      setLoading(true);
+      try {
+        const response = await mediaApi.getMovies(searchTerm);
+        setMovies(response.data);
+        setError(null);
+      } catch (err: any) {
+        console.error(err);
+        setError('Failed to load movies. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-        const timeoutId = setTimeout(() => {
-            fetchMovies();
-        }, 500); // Debounce search
+    const timeoutId = setTimeout(() => {
+      fetchMovies();
+    }, 500); // Debounce search
 
-        return () => clearTimeout(timeoutId);
-    }, [searchTerm]);
+    return () => clearTimeout(timeoutId);
+  }, [searchTerm]);
 
-    return (
-        <Box>
-            <Typography variant="h2" sx={{ mb: 3 }}>
-                Movies
-            </Typography>
-            <TextField
-                fullWidth
-                placeholder="Search movies..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                sx={{ mb: 4 }}
-                InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            <SearchIcon />
-                        </InputAdornment>
-                    )
-                }}
-            />
+  return (
+    <Box>
+      <Typography variant="h2" sx={{ mb: 3 }}>
+        Movies
+      </Typography>
+      <TextField
+        fullWidth
+        placeholder="Search movies..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        sx={{ mb: 4 }}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          )
+        }}
+      />
 
-            {loading && (
-                <Box sx={{ display: 'flex', justifyContent: 'center', my: 4 }}>
-                    <CircularProgress />
-                </Box>
-            )}
-
-            {error && (
-                <Alert severity="error" sx={{ mb: 4 }}>
-                    {error}
-                </Alert>
-            )}
-
-            {!loading && !error && (
-                <>
-                    <Grid container spacing={3}>
-                        {movies.map((movie) => (
-                            <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
-                                <MovieCard movie={movie} />
-                            </Grid>
-                        ))}
-                    </Grid>
-                    {movies.length === 0 && (
-                        <Typography variant="h6" color="text.secondary" sx={{ textAlign: 'center', mt: 4 }}>
-                            No movies found matching your search.
-                        </Typography>
-                    )}
-                </>
-            )}
+      {loading && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', my: 4 }}>
+          <CircularProgress />
         </Box>
-    );
+      )}
+
+      {error && (
+        <Alert severity="error" sx={{ mb: 4 }}>
+          {error}
+        </Alert>
+      )}
+
+      {!loading && !error && (
+        <>
+          <Grid container spacing={3}>
+            {movies.map((movie) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
+                <MovieCard movie={movie} />
+              </Grid>
+            ))}
+          </Grid>
+          {movies.length === 0 && (
+            <Typography variant="h6" color="text.secondary" sx={{ textAlign: 'center', mt: 4 }}>
+              No movies found matching your search.
+            </Typography>
+          )}
+        </>
+      )}
+    </Box>
+  );
 }

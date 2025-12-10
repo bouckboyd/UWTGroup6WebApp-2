@@ -6,29 +6,21 @@ import { Movie, TVShow } from 'types/media';
 const localApi = axios.create();
 
 export const mediaApi = {
-    // Movies
-    getMovies: (search?: string) =>
-        localApi.get<Movie[]>(`/api/movies${search ? `?search=${search}` : ''}`),
+  // Movies
+  getMovies: (search?: string) => localApi.get<Movie[]>(`/api/movies${search ? `?search=${search}` : ''}`),
 
-    getMovie: (id: number | string) =>
-        localApi.get<Movie>(`/api/movies/${id}`),
+  getMovie: (id: number | string) => localApi.get<Movie>(`/api/movies/${id}`),
 
-    createMovie: (data: Partial<Movie>) =>
-        localApi.post<Movie>('/api/movies', data),
+  createMovie: (data: Partial<Movie>) => localApi.post<Movie>('/api/movies', data),
 
-    deleteMovie: (id: number | string) =>
-        localApi.delete(`/api/movies/${id}`),
+  deleteMovie: (id: number | string) => localApi.delete(`/api/movies/${id}`),
 
-    // TV Shows
-    getTVShows: (search?: string) =>
-        localApi.get<TVShow[]>(`/api/tv-shows${search ? `?search=${search}` : ''}`),
+  // TV Shows
+  getTVShows: (search?: string) => localApi.get<TVShow[]>(`/api/tv-shows${search ? `?search=${search}` : ''}`),
 
-    getTVShow: (id: number | string) =>
-        localApi.get<TVShow>(`/api/tv-shows/${id}`),
+  getTVShow: (id: number | string) => localApi.get<TVShow>(`/api/tv-shows/${id}`),
 
-    createTVShow: (data: Partial<TVShow>) =>
-        localApi.post<TVShow>('/api/tv-shows', data),
+  createTVShow: (data: Partial<TVShow>) => localApi.post<TVShow>('/api/tv-shows', data),
 
-    deleteTVShow: (id: number | string) =>
-        localApi.delete(`/api/tv-shows/${id}`)
+  deleteTVShow: (id: number | string) => localApi.delete(`/api/tv-shows/${id}`)
 };
