@@ -7,7 +7,7 @@ import ProviderWrapper from './ProviderWrapper';
 import { publicSans } from 'config';
 
 export const metadata: Metadata = {
-  title: 'TCSS 460 UI Template',
+  title: 'TCSS 460 Group 6',
   description: 'TCSS 460 UI Template'
 };
 
