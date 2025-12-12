@@ -18,7 +18,6 @@ import Typography from '@mui/material/Typography';
 // project import
 import Dot from 'components/@extended/Dot';
 import IconButton from 'components/@extended/IconButton';
-import { FormattedMessage } from 'react-intl';
 
 import { MenuOrientation, ThemeMode, NavActionType } from 'config';
 import useConfig from 'hooks/useConfig';
@@ -225,7 +224,7 @@ export default function NavItem({ item, level, isParents = false }: Props) {
                           }
                     ]}
                   >
-                    {typeof item.title === 'string' ? <FormattedMessage id={item.title} /> : item.title}
+                    {item.title}
                   </Typography>
                 }
               />
@@ -382,7 +381,7 @@ export default function NavItem({ item, level, isParents = false }: Props) {
           <ListItemText
             primary={
               <Typography variant="h6" color={isSelected ? 'primary.main' : 'secondary.dark'}>
-                {typeof item.title === 'string' ? <FormattedMessage id={item.title} /> : item.title}
+                {item.title}
               </Typography>
             }
           />

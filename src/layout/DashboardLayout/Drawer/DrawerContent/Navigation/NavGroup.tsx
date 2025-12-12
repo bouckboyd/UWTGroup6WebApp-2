@@ -267,7 +267,7 @@ export default function NavGroup({
                 drawerOpen && (
                   <Box sx={{ pl: 3, mb: 1.5 }}>
                     <Typography variant="subtitle2" color="text.secondary">
-                      {typeof item.title === 'string' ? <FormattedMessage id={item.title} /> : item.title}
+                      {item.title}
                     </Typography>
                     {item.caption && (
                       <Typography variant="caption" color="secondary">
@@ -304,13 +304,7 @@ export default function NavGroup({
               sx={{ mr: 1 }}
               primary={
                 <Typography variant="body1" color={selectedID === currentItem.id ? 'primary.main' : 'secondary.dark'}>
-                  {currentItem.id === lastItemId ? (
-                    <FormattedMessage id="more-items" />
-                  ) : typeof currentItem.title === 'string' ? (
-                    <FormattedMessage id={currentItem.title} />
-                  ) : (
-                    currentItem.title
-                  )}
+                  {currentItem.id === lastItemId ? <FormattedMessage id="more-items" /> : currentItem.title}
                 </Typography>
               }
             />

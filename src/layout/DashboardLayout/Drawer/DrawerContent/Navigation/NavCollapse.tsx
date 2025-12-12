@@ -18,8 +18,6 @@ import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import Typography from '@mui/material/Typography';
 
-import { FormattedMessage } from 'react-intl';
-
 // project import
 import NavItem from './NavItem';
 import Dot from 'components/@extended/Dot';
@@ -406,7 +404,7 @@ export default function NavCollapse({ menu, level, parentId, setSelectedItems, s
               <ListItemText
                 primary={
                   <Typography variant="h6" color={selected === menu.id ? 'primary' : textColor}>
-                    {typeof menu.title === 'string' ? <FormattedMessage id={menu.title} /> : menu.title}
+                    {menu.title}
                   </Typography>
                 }
                 secondary={
@@ -577,7 +575,7 @@ export default function NavCollapse({ menu, level, parentId, setSelectedItems, s
             <ListItemText
               primary={
                 <Typography variant="body1" color="inherit" sx={{ my: 'auto' }}>
-                  {typeof menu.title === 'string' ? <FormattedMessage id={menu.title} /> : menu.title}
+                  {menu.title}
                 </Typography>
               }
             />

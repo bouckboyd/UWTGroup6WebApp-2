@@ -42,7 +42,7 @@ export default function TVShowsPage() {
 
         const timeoutId = setTimeout(() => {
             fetchTVShows();
-        }, 500);
+        }, 500); // Debounce search
 
         return () => clearTimeout(timeoutId);
     }, [searchTerm, currentPage]);

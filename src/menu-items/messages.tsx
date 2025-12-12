@@ -1,3 +1,6 @@
+// third-party
+import { FormattedMessage } from 'react-intl';
+
 // assets
 import MessageOutlined from '@ant-design/icons/MessageOutlined';
 import EmailIcon from '@mui/icons-material/Email';
@@ -13,25 +16,25 @@ const icons = { MessageOutlined, EmailIcon, SendIcon };
 
 const pages: NavItemType = {
   id: 'group-pages',
-  title: 'pages',
+  title: <FormattedMessage id="pages" />,
   type: 'group',
   children: [
     {
       id: 'messages',
-      title: 'messages',
+      title: <FormattedMessage id="messages" />,
       type: 'collapse',
       icon: icons.MessageOutlined,
       children: [
         {
           id: 'send-message',
-          title: 'send-message',
+          title: <FormattedMessage id="send-message" />,
           type: 'item',
           url: '/messages/send',
           icon: icons.SendIcon
         },
         {
           id: 'view-messages',
-          title: 'view-messages',
+          title: <FormattedMessage id="view-messages" />,
           type: 'item',
           url: '/messages/list',
           icon: icons.EmailIcon

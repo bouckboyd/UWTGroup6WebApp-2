@@ -1,3 +1,6 @@
+// third-party
+import { FormattedMessage } from 'react-intl';
+
 // assets
 import QuestionOutlined from '@ant-design/icons/QuestionOutlined';
 import StopOutlined from '@ant-design/icons/StopOutlined';
@@ -19,12 +22,20 @@ const icons = {
 
 const other: NavItemType = {
   id: 'other',
-  title: 'others',
+  title: <FormattedMessage id="others" />,
   type: 'group',
   children: [
+    // 'disabled-menu' removed per request
+    {
+      id: 'full-page',
+      title: <FormattedMessage id="full-page" />,
+      type: 'item',
+      url: '/full-page',
+      icon: icons.FullscreenOutlined
+    },
     {
       id: 'documentation',
-      title: 'documentation',
+      title: <FormattedMessage id="documentation" />,
       type: 'item',
       url: 'https://uwt-set-tcss460-lecture-materials.github.io/TCSS460-phase-2/',
       icon: icons.QuestionOutlined,
