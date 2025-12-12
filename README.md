@@ -1,5 +1,5 @@
 Group 6 - Movie/TV App - TCSS460
-https://uwtgroup6webapp.vercel.app/movies
+https://uwtgroup6webapp.vercel.app/movies  
 
 Auth API: https://g1-authcore-0fdbad45b289.herokuapp.com/
 
